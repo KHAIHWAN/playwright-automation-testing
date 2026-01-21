@@ -1,7 +1,8 @@
 import { expect, type Locator, type Page } from '@playwright/test'
 
 import { removeTrailingSlash } from '../utils/removeTrailingSlash'
-import { log } from 'console'
+
+import { loginData } from '../data/login.data'
 
 export class LoginPage {
 
@@ -34,7 +35,6 @@ export class LoginPage {
     }
 
     async goto(): Promise<void> {
-        // เปิดหน้า login
         await this.page.goto(this.baseUrl)
         // รอจนกว่า logo ของหน้า login ถูก load
         await this.page.waitForSelector(this.logoWeb, {state: 'visible'})
@@ -82,6 +82,14 @@ export class LoginPage {
         } catch (error) {
             return ''
         }
+    }
+
+    async setUpValidLogin(): Promise<void> {
+        const loginPage = new LoginPage(this.page)
+        await loginPage.goto()
+        await loginPage.fillUsername(loginData.valid.username)
+        await loginPage.fillPassword(loginData.valid.password)
+        await loginPage.clickLoginButton()
     }
 
 }
