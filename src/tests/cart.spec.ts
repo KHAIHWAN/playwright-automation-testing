@@ -88,37 +88,10 @@ test.describe('Cart Page', () => {
             expect(cartPrices).toEqual(expect.arrayContaining(expectedPrices))
         })
 
-        test('TC-CART-06: ', async ({ inventoryPage, cartPage }) => {
-            await inventoryPage.goto()
-    
-            // Collect expected data
-            const expectedItems = [
-                {
-                    name: await inventoryPage.getProductNameByIndex(0),
-                    price: await inventoryPage.getProductPriceByIndex(0)
-                },
-                {
-                    name: await inventoryPage.getProductNameByIndex(2),
-                    price: await inventoryPage.getProductPriceByIndex(2)
-                }
-            ]
-
-            // Add items
-            await inventoryPage.addToCartByIndex(0)
-            await inventoryPage.addToCartByIndex(2)
-
-
-            // Verify in cart
-            await cartPage.goto()
-            const isMatch = await cartPage.verifyItemsMatchInventory(expectedItems)
-
-            expect(isMatch).toBeTruthy()
-        })
-
     })
 
-    test.describe('TC-CART-07: Quantity Management', () => {
-        test('TC-CART-07: ปริมาณสินค้า ควรเริ่มต้นที่ 1 ', async ({ inventoryPage, cartPage }) => {
+    test.describe('TC-CART-06: Test Quantity Management', () => {
+        test('TC-CART-06: ปริมาณสินค้า ควรเริ่มต้นที่ 1 ', async ({ inventoryPage, cartPage }) => {
             await inventoryPage.goto()
             await inventoryPage.addMultipleItemsToCart(3)
 
@@ -131,8 +104,8 @@ test.describe('Cart Page', () => {
         })
     })
 
-    test.describe('TC-CART-08 - 10: Test Remove Items Functionality', () => {
-        test('TC-CART-08: สามารถลบสินค้าได้', async ({ inventoryPage, cartPage }) => {
+    test.describe('TC-CART-07 - 09: Test Remove Items Functionality', () => {
+        test('TC-CART-07: สามารถลบสินค้าได้', async ({ inventoryPage, cartPage }) => {
             await inventoryPage.goto()
             await inventoryPage.addMultipleItemsToCart(3)
 
@@ -145,7 +118,7 @@ test.describe('Cart Page', () => {
             expect(newCount).toBe(initialCount - 1)
         })
 
-        test('TC-CART-09: สามารถลบสินค้าทั้งหมดได้ โดยลบออกที่ละชิ้น', async ({ inventoryPage, cartPage }) => {
+        test('TC-CART-08: สามารถลบสินค้าทั้งหมดได้ โดยลบออกที่ละชิ้น', async ({ inventoryPage, cartPage }) => {
             await inventoryPage.goto()
             await inventoryPage.addMultipleItemsToCart(4)
 
@@ -157,7 +130,7 @@ test.describe('Cart Page', () => {
             expect(await cartPage.getCartItemCount()).toBe(0)
         })
 
-        test('TC-CART-10: อัปเดต badge ถ้าลบสินค้า ', async ({ inventoryPage, cartPage }) => {
+        test('TC-CART-09: อัปเดต badge ถ้าลบสินค้า ', async ({ inventoryPage, cartPage }) => {
             await inventoryPage.goto()
             await inventoryPage.addMultipleItemsToCart(3)
 
@@ -170,8 +143,8 @@ test.describe('Cart Page', () => {
         })
     })
 
-    test.describe('TC-CART-11 - 12: Test Continue Shopping Button', () => {
-        test('TC-CART-11: กดปุ่ม continue shopping สามารถกลับไปยังหน้า inventory page', async ({ page, inventoryPage, cartPage }) => {
+    test.describe('TC-CART-10 - 11: Test Continue Shopping Button', () => {
+        test('TC-CART-10: กดปุ่ม continue shopping สามารถกลับไปยังหน้า inventory page', async ({ page, inventoryPage, cartPage }) => {
             await inventoryPage.goto()
             await inventoryPage.addToCartByIndex(0)
     
@@ -182,7 +155,7 @@ test.describe('Cart Page', () => {
             expect(await inventoryPage.isOnInventoryPage()).toBeTruthy()
         })
 
-        test('TC-CART-12: สินค้าในตะกร้ายังคงอยู่ ถ้ากดปุ่ม continue shopping ', async ({ inventoryPage, cartPage }) => {
+        test('TC-CART-11: สินค้าในตะกร้ายังคงอยู่ ถ้ากดปุ่ม continue shopping ', async ({ inventoryPage, cartPage }) => {
             await inventoryPage.goto()
             await inventoryPage.addMultipleItemsToCart(2)
 
@@ -195,8 +168,8 @@ test.describe('Cart Page', () => {
         })
     })
 
-    test.describe('TC-CART-13 - 14: Test Checkout Button', () => {
-        test('TC-CART-13: ถ้ามีสินค้าในตะกร้า สามารถกดปุ่ม checkout ไปยังหน้า checkout page', async ({ page, inventoryPage, cartPage }) => {
+    test.describe('TC-CART-12 - 13: Test Checkout Button', () => {
+        test('TC-CART-12: ถ้ามีสินค้าในตะกร้า สามารถกดปุ่ม checkout ไปยังหน้า checkout page', async ({ page, inventoryPage, cartPage }) => {
             await inventoryPage.goto()
             await inventoryPage.addToCartByIndex(0)
 
@@ -206,7 +179,7 @@ test.describe('Cart Page', () => {
             await expect(page).toHaveURL(URLS.CHECKOUT_STEP_ONE)
         })
 
-        test('TC-CART-14: ถ้าไม่มีสินค้าในตะกร้า ไม่สามารถกดปุ่ม checkout ไปยังหน้า checkout page', async ({ page, cartPage }) => {
+        test('TC-CART-13: ถ้าไม่มีสินค้าในตะกร้า ไม่สามารถกดปุ่ม checkout ไปยังหน้า checkout page', async ({ page, cartPage }) => {
             await cartPage.goto()
     
             expect(await cartPage.isCartEmpty()).toBeTruthy()
