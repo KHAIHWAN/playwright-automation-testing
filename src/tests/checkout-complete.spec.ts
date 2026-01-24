@@ -3,7 +3,7 @@ import { test, expect } from '../fixtures/custom.fixtures'
 import { URLS, CHECKOUT_DATA } from '../data-test/login.data'
 
 test.describe('TC-CHECKOUT-COMPLETE-01 - 02: Cart Badge Removal', () => {
-    test('TC-CHECKOUT-COMPLETE-01: ตรวจสอบไม่มี badge หลังจาก checkout', async ({ 
+    test('TC-CHECKOUT-COMPLETE-01: ตรวจสอบไม่มี Badge หลังจาก Checkout', async ({ 
         inventoryPage,
         cartPage,
         checkoutStepOnePage,
@@ -32,7 +32,7 @@ test.describe('TC-CHECKOUT-COMPLETE-01 - 02: Cart Badge Removal', () => {
         expect(await checkoutCompletePage.isCartEmpty()).toBeTruthy()
     })
 
-    test('TC-CHECKOUT-COMPLETE-02: ตรวจสอบว่า cart ไม่มีสินค้าแล้วหลังจาก checkout ทุก และตรวจสอบที่ cart page', async ({ 
+    test('TC-CHECKOUT-COMPLETE-02: ตรวจสอบว่า Cart ไม่มีสินค้าแล้วหลังจากกด Checkout และตรวจสอบที่หน้า Cart Page', async ({ 
         inventoryPage,
         cartPage,
         checkoutStepOnePage,
@@ -73,7 +73,7 @@ test.describe('TC-CHECKOUT-COMPLETE-03: Success Messages', () => {
         await checkoutCompletePage.waitForCompletePageToLoad()
     })
 
-    test('TC-CHECKOUT-COMPLETE-03: ตรวจสอบว่ามีส่วนต่างๆที่ต้องการแสดงหรือไม่', async ({ checkoutCompletePage }) => {
+    test('TC-CHECKOUT-COMPLETE-03: ตรวจสอบว่ามีตรวจสอบองค์กรประกอบที่ต้องการแสดงหรือไม่', async ({ checkoutCompletePage }) => {
         const verification = await checkoutCompletePage.verifyCompletePage()
     
         expect(verification.headerVisible).toBeTruthy()
@@ -103,7 +103,7 @@ test.describe('TC-CHECKOUT-COMPLETE-04 - 05: Back Home Button', () => {
         await checkoutCompletePage.waitForCompletePageToLoad()
     })
 
-    test('TC-CHECKOUT-COMPLETE-04: ตรวจสอบว่ากดปุ่ม Back Home แล้วจะไปหน้า inventory หรือไม่', async ({ 
+    test('TC-CHECKOUT-COMPLETE-04: ตรวจสอบว่ากดปุ่ม Back Home แล้วจะไปหน้า Inventory Page หรือไม่', async ({ 
         checkoutCompletePage,
         inventoryPage,
         page 

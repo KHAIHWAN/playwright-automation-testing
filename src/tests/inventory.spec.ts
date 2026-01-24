@@ -53,7 +53,7 @@ test.describe('Inventory Page', () => {
             expect(currentSort).toBe(SortOption.PRICE_HIGH_TO_LOW)
         })
 
-        test('TC-INVENTORY-05: เมื่อเรียงสินค้าแล้ว และสลับ option การเรียงต้องเปลี่ยน', async ({ inventoryPage }) => {
+        test('TC-INVENTORY-05: เมื่อเรียงสินค้าแล้ว และสลับ Option การเรียงต้องเปลี่ยน', async ({ inventoryPage }) => {
             // เรียงตามชื่อ A-Z
             await inventoryPage.selectSortOption(SortOption.NAME_A_TO_Z)
             expect(await inventoryPage.areProductNamesSortedAZ()).toBeTruthy()
@@ -139,18 +139,18 @@ test.describe('Inventory Page', () => {
             await inventoryPage.goto()
         })
 
-        test('TC-INVENTORY-10: ไม่แสดง badge เมื่อไม่เพิ่มสินค้า ', async ({ inventoryPage }) => {
+        test('TC-INVENTORY-10: ไม่แสดง Badge เมื่อไม่ได้เพิ่มสินค้า', async ({ inventoryPage }) => {
             expect(await inventoryPage.isCartBadgeVisible()).toBeFalsy()
         })
 
-        test('TC-INVENTORY-11: เมื่อเพิ่มสินค้า 1 ชิ้น ต้องแสดง badge ตามสินค้า ', async ({ inventoryPage }) => {
+        test('TC-INVENTORY-11: เมื่อเพิ่มสินค้า 1 ชิ้น ต้องแสดง Badge ตามจำนวนสินค้าที่เพิ่ม', async ({ inventoryPage }) => {
             await inventoryPage.addToCartByIndex(0)
     
             expect(await inventoryPage.isCartBadgeVisible()).toBeTruthy()
             expect(await inventoryPage.getCartBadgeCount()).toBe(1)
         })
 
-        test('TC-INVENTORY-12: เมื่อเพิ่มสินค้า 3 ชิ้น ต้องแสดง badge ตามสินค้า ', async ({ inventoryPage }) => {
+        test('TC-INVENTORY-12: เมื่อเพิ่มสินค้า 3 ชิ้น ต้องแสดง Badge ตามสินค้า', async ({ inventoryPage }) => {
             // Add 3 items
             await inventoryPage.addToCartByIndex(0);
             expect(await inventoryPage.getCartBadgeCount()).toBe(1);
@@ -162,7 +162,7 @@ test.describe('Inventory Page', () => {
             expect(await inventoryPage.getCartBadgeCount()).toBe(3);
         })
 
-        test('TC-INVENTORY-13: เมื่อเพิ่มสินค้า 3 ชิ้น แล้วลบสินค้า 2 ชิ้น ต้องแสดง badge ตามสินค้า ', async ({ inventoryPage }) => {
+        test('TC-INVENTORY-13: เมื่อเพิ่มสินค้า 3 ชิ้น แล้วลบสินค้า 2 ชิ้น ต้องแสดง Badge ตามสินค้า', async ({ inventoryPage }) => {
             // เพิ่มสินค้า 3 ชิ้น
             await inventoryPage.addMultipleItemsToCart(3);
             expect(await inventoryPage.getCartBadgeCount()).toBe(3);
@@ -176,7 +176,7 @@ test.describe('Inventory Page', () => {
             expect(await inventoryPage.getCartBadgeCount()).toBe(1);
         })
 
-        test('TC-INVENTORY-14: เมื่อเพิ่มสินค้า 3 ชิ้น แล้วลบสินค้าทุกชิ้น ต้องไม่แสดง badge ', async ({ inventoryPage }) => {
+        test('TC-INVENTORY-14: เมื่อเพิ่มสินค้า 3 ชิ้น แล้วลบสินค้าทุกชิ้น ต้องไม่แสดง Badge', async ({ inventoryPage }) => {
             // เพิ่มสินค้า 3 ชิ้น
             await inventoryPage.addMultipleItemsToCart(3);
             expect(await inventoryPage.getCartBadgeCount()).toBe(3);
@@ -189,7 +189,7 @@ test.describe('Inventory Page', () => {
             expect(await inventoryPage.getCartBadgeCount()).toBe(0);
         })
 
-        test('TC-INVENTORY-15: กดเพิ่มสินค้าทุกสินค้า แล้วต้องแสดง badge ตามจำนวนสินค้า ', async ({ inventoryPage }) => {
+        test('TC-INVENTORY-15: กดเพิ่มสินค้าทุกสินค้า แล้วต้องแสดง Badge ตามจำนวนสินค้า', async ({ inventoryPage }) => {
             const totalProducts = await inventoryPage.getProductCount();
     
             await inventoryPage.addAllItemsToCart();
@@ -197,7 +197,7 @@ test.describe('Inventory Page', () => {
             expect(await inventoryPage.getCartBadgeCount()).toBe(totalProducts);
         })
 
-        test('TC-INVENTORY-16: เพิ่มสินค้าแล้ว กดเรียงสินค้า ต้องแสดง badge ตามจำนวนสินค้าที่เพิ่มเข้าไป ', async ({ inventoryPage }) => {
+        test('TC-INVENTORY-16: เพิ่มสินค้าแล้ว กดเรียงสินค้า ต้องแสดง Badge ตามจำนวนสินค้าที่เพิ่มเข้าไป', async ({ inventoryPage }) => {
             // เพิ่มสินค้า 3 ชิ้น
             await inventoryPage.addMultipleItemsToCart(3);
             expect(await inventoryPage.getCartBadgeCount()).toBe(3);

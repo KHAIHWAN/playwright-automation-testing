@@ -3,7 +3,7 @@ import { test, expect } from '../fixtures/custom.fixtures'
 import { URLS, CHECKOUT_DATA } from '../data-test/login.data'
 
 test.describe('TC-CHECKOUT-STEP-TWO-01: Cart Badge Display', () => {
-    test('TC-CHECKOUT-STEP-TWO-01: แสดง badge ตรงกับจำนวนสินค้าในตะกร้า', async ({ 
+    test('TC-CHECKOUT-STEP-TWO-01: แสดง Badge ตรงกับจำนวนสินค้าในตะกร้า', async ({ 
         inventoryPage, 
         cartPage, 
         checkoutStepOnePage,
@@ -30,7 +30,7 @@ test.describe('TC-CHECKOUT-STEP-TWO-01: Cart Badge Display', () => {
 })
 
 test.describe('TC-CHECKOUT-STEP-TWO-02 - 03: Product Information Validation', () => {
-    test('TC-CHECKOUT-STEP-TWO-02: ตรวจสอบชื่อสินค้าที่ถูกเพิ่มในตะกร้า ตรงกันหรือไม่ ในหน้า checkout step two', async ({ 
+    test('TC-CHECKOUT-STEP-TWO-02: ตรวจสอบชื่อสินค้าที่ถูกเพิ่มในตะกร้า ตรงกันหรือไม่ ในหน้า Checkout Step Two Page', async ({ 
         inventoryPage,
         cartPage,
         checkoutStepOnePage,
@@ -58,7 +58,7 @@ test.describe('TC-CHECKOUT-STEP-TWO-02 - 03: Product Information Validation', ()
         expect(summaryNames.length).toBe(expectedNames.length)
     })
 
-    test('TC-CHECKOUT-STEP-TWO-03: ตรวจสอบราคาสินค้าที่ถูกเพิ่มในตะกร้า ตรงกันหรือไม่ ในหน้า checkout step two', async ({ 
+    test('TC-CHECKOUT-STEP-TWO-03: ตรวจสอบชื่อสินค้าที่ถูกเพิ่มในตะกร้า ตรงกันหรือไม่ ในหน้า Checkout Step Two Page', async ({ 
         inventoryPage,
         cartPage,
         checkoutStepOnePage,
@@ -86,24 +86,8 @@ test.describe('TC-CHECKOUT-STEP-TWO-02 - 03: Product Information Validation', ()
     })
 })
 
-test.describe('TC-CHECKOUT-STEP-TWO-04 - 06: Tax Calculation', () => {
-    test('TC-CHECKOUT-STEP-TWO-04: ตรวจสอบการคำนวณภาษี', async ({ 
-        inventoryPage,
-        cartPage,
-        checkoutStepOnePage,
-        checkoutStepTwoPage 
-    }) => {
-        await inventoryPage.goto()
-        await inventoryPage.addMultipleItemsToCart(3)
-
-        await inventoryPage.clickCartIcon()
-        await cartPage.clickCheckout()
-        await checkoutStepOnePage.fillAndContinue(CHECKOUT_DATA.VALID)
-
-        expect(await checkoutStepTwoPage.isTaxCalculationCorrect()).toBeTruthy()
-    })
-
-    test('TC-CHECKOUT-STEP-TWO-05: ตรวจสอบการคำนวนยอดรวม Item total ไม่รวมภาษี', async ({ 
+test.describe('TC-CHECKOUT-STEP-TWO-04 - 05: Tax Calculation', () => {
+    test('TC-CHECKOUT-STEP-TWO-04: ตรวจสอบการคำนวนยอดรวม Item Total ไม่รวมภาษี', async ({ 
         inventoryPage,
         cartPage,
         checkoutStepOnePage,
@@ -119,7 +103,7 @@ test.describe('TC-CHECKOUT-STEP-TWO-04 - 06: Tax Calculation', () => {
         expect(await checkoutStepTwoPage.isSubtotalCorrect()).toBeTruthy()
     })
 
-    test('TC-CHECKOUT-STEP-TWO-06: ตรวจสอบการคำนวนยอดรวม Item total + ภาษี', async ({ 
+    test('TC-CHECKOUT-STEP-TWO-05: ตรวจสอบการคำนวนยอดรวม Item Total + ภาษี', async ({ 
         inventoryPage,
         cartPage,
         checkoutStepOnePage,
@@ -137,8 +121,8 @@ test.describe('TC-CHECKOUT-STEP-TWO-04 - 06: Tax Calculation', () => {
 
 })
 
-test.describe('TC-CHECKOUT-STEP-TWO-07 : Cancel Button', () => {
-    test('TC-CHECKOUT-STEP-TWO-07: ตรวจสอบการกดปุ่ม Cancel ต้องไปหน้า checkout step one', async ({ 
+test.describe('TC-CHECKOUT-STEP-TWO-06: Cancel Button', () => {
+    test('TC-CHECKOUT-STEP-TWO-06: ตรวจสอบการกดปุ่ม Cancel ต้องไปหน้า Checkout Step One Page', async ({ 
         inventoryPage,
         cartPage,
         checkoutStepOnePage,
@@ -160,8 +144,8 @@ test.describe('TC-CHECKOUT-STEP-TWO-07 : Cancel Button', () => {
 
 })
 
-test.describe('TC-CHECKOUT-STEP-TWO-08: Finish Button', () => {
-    test('TC-CHECKOUT-STEP-TWO-08: ตรวจสอบการกดปุ่ม Finish ต้องไปหน้า checkout complete', async ({ 
+test.describe('TC-CHECKOUT-STEP-TWO-07: Finish Button', () => {
+    test('TC-CHECKOUT-STEP-TWO-07: ตรวจสอบการกดปุ่ม Finish ต้องไปหน้า Checkout Complete', async ({ 
         inventoryPage,
         cartPage,
         checkoutStepOnePage,

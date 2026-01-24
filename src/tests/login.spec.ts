@@ -63,12 +63,12 @@ test.describe('Login Page', () => {
             await loginPage.goto()
         })
 
-        test('TC-LOGIN-08: เข้าสู่ระบบสำเร็จเมื่อกรอก username และ password ที่ถูกต้อง  ', async ({ page, loginPage }) => {
+        test('TC-LOGIN-08: เข้าสู่ระบบสำเร็จเมื่อกรอก Usernames และ Password ที่ถูกต้อง', async ({ page, loginPage }) => {
             await loginPage.login(VALID_USERS.STANDARD.username, VALID_USERS.STANDARD.password)
             await expect(page).toHaveURL(URLS.INVENTORY)
         })
 
-        test('TC-LOGIN-09: แสดง error เมื่อกรอก username ผิด แต่กรอก password ถูก ', async ({ loginPage }) => {
+        test('TC-LOGIN-09: แสดง Error เมื่อกรอก Usernames ผิด แต่กรอก Password ถูก', async ({ loginPage }) => {
             await loginPage.login(INVALID_CREDENTIALS.WRONG_USERNAME.username, VALID_USERS.STANDARD.password)
             await loginPage.waitForErrorMessage()
             expect(await loginPage.isErrorVisible()).toBeTruthy()
@@ -76,7 +76,7 @@ test.describe('Login Page', () => {
             expect(errorMsg).toContain(ERROR_MESSAGES.INVALID_CREDENTIALS)
         })
 
-        test('TC-LOGIN-10: แสดง error เมื่อกรอก username ถูก แต่กรอก password ผิด', async ({ loginPage }) => {
+        test('TC-LOGIN-10: แสดง Error เมื่อกรอก Usernames ถูก แต่กรอก Password ผิด', async ({ loginPage }) => {
             await loginPage.login(VALID_USERS.STANDARD.username, INVALID_CREDENTIALS.WRONG_PASSWORD.password)
             await loginPage.waitForErrorMessage()
             expect(await loginPage.isErrorVisible()).toBeTruthy()
@@ -84,7 +84,7 @@ test.describe('Login Page', () => {
             expect(errorMsg).toContain(ERROR_MESSAGES.INVALID_CREDENTIALS)
         })
 
-        test('TC-LOGIN-11: แสดง error เมื่อกรอก username และ password ผิด', async ({ loginPage }) => {
+        test('TC-LOGIN-11: แสดง Error เมื่อกรอก Usernames และ Password ผิด', async ({ loginPage }) => {
             await loginPage.login(INVALID_CREDENTIALS.BOTH_WRONG.username, INVALID_CREDENTIALS.BOTH_WRONG.password);
             await loginPage.waitForErrorMessage()
             expect(await loginPage.isErrorVisible()).toBeTruthy()
@@ -92,7 +92,7 @@ test.describe('Login Page', () => {
             expect(errorMsg).toContain(ERROR_MESSAGES.INVALID_CREDENTIALS)
         })
 
-        test('TC-LOGIN-12: แสดง error เมื่อกรอกแค่ username ถูก แต่ไม่กรอก password', async ({ loginPage }) => {
+        test('TC-LOGIN-12: แสดง Error เมื่อกรอกแค่ Usernames ถูก แต่ไม่กรอก Password', async ({ loginPage }) => {
             await loginPage.fillUsername(VALID_USERS.STANDARD.username)
             await loginPage.clickLogin()
             await loginPage.waitForErrorMessage()
@@ -101,7 +101,7 @@ test.describe('Login Page', () => {
             expect(errorMsg).toContain(ERROR_MESSAGES.PASSWORD_REQUIRED)
         })
 
-        test('TC-LOGIN-13: แสดง error เมื่อกรอกแค่ password ถูก แต่ไม่กรอก username', async ({ loginPage }) => {
+        test('TC-LOGIN-13: แสดง Error เมื่อกรอกแค่ Password ถูก แต่ไม่กรอก Usernames', async ({ loginPage }) => {
             await loginPage.fillPassword(VALID_USERS.STANDARD.password)
             await loginPage.clickLogin()
             await loginPage.waitForErrorMessage()
@@ -110,7 +110,7 @@ test.describe('Login Page', () => {
             expect(errorMsg).toContain(ERROR_MESSAGES.USERNAME_REQUIRED)
         })
 
-        test('TC-LOGIN-14: แสดง error เมื่อไม่กรอกทั้ง username และ password', async ({ loginPage }) => {
+        test('TC-LOGIN-14: แสดง Error เมื่อไม่กรอกทั้ง Usernames และ Password', async ({ loginPage }) => {
             await loginPage.clickLogin()
             await loginPage.waitForErrorMessage()
             expect(await loginPage.isErrorVisible()).toBeTruthy()
@@ -118,7 +118,7 @@ test.describe('Login Page', () => {
             expect(errorMsg).toContain(ERROR_MESSAGES.USERNAME_REQUIRED)
         })
 
-        test('TC-LOGIN-15: แสดงความแจ้งเตือน user ถูก lock แล้ว', async ({ loginPage }) => {
+        test('TC-LOGIN-15: แสดงข้อความแจ้งเตือน เมื่อ Usernames ถูก Lock แล้ว', async ({ loginPage }) => {
             await loginPage.login(VALID_USERS.LOCKED_OUT.username, VALID_USERS.LOCKED_OUT.password)
             await loginPage.waitForErrorMessage()
             expect(await loginPage.isErrorVisible()).toBeTruthy()
@@ -138,7 +138,7 @@ test.describe('Login Page', () => {
             await expect(page).toHaveURL(URLS.INVENTORY)
         })
 
-        test('TC-LOGIN-17: เมื่อกดปุ่ม Tab หลังกรอก username cursor ต้องไปอยู่ที่ช่องกรอก password', async ({ page, loginPage }) => {
+        test('TC-LOGIN-17: เมื่อกดปุ่ม Tab หลังกรอก Username Cursor ต้องไปอยู่ที่ช่องกรอก Password', async ({ page, loginPage }) => {
             await loginPage.fillUsername(VALID_USERS.STANDARD.username)
             await loginPage.pressTabOnUsername()
     
@@ -147,14 +147,14 @@ test.describe('Login Page', () => {
             await expect(focusedElement).toHaveAttribute('data-test', 'password')
         })
 
-        test('TC-LOGIN-18: เมื่อกรอก username และ password แล้วกดปุ่ม Enter สามารถเข้าสู่ระบบได้', async ({ page, loginPage }) => {
+        test('TC-LOGIN-18: เมื่อกรอก Username และ Password แล้วกดปุ่ม Enter สามารถเข้าสู่ระบบได้', async ({ page, loginPage }) => {
             await loginPage.fillUsername(VALID_USERS.STANDARD.username)
             await loginPage.fillPassword(VALID_USERS.STANDARD.password)
             await loginPage.pressEnterOnPassword()
             await expect(page).toHaveURL(URLS.INVENTORY)
         })
 
-        test('TC-LOGIN-19: แสดงความแจ้งเตือน error เมื่อไม่ได้กรอก username password แล้วกดปุ่ม Enter จะไม่สามารถเข้าสู่ระบบได้', async ({ loginPage }) => {
+        test('TC-LOGIN-19: แสดงความแจ้งเตือน Error เมื่อไม่ได้กรอก Usernames Password แล้วกดปุ่ม Enter จะไม่สามารถเข้าสู่ระบบได้', async ({ loginPage }) => {
             await loginPage.loginWithTabOnly()
             await loginPage.waitForErrorMessage()
             expect(await loginPage.isErrorVisible()).toBeTruthy()
@@ -162,7 +162,7 @@ test.describe('Login Page', () => {
             expect(errorMsg).toContain(ERROR_MESSAGES.USERNAME_REQUIRED)
         })
 
-        test('TC-LOGIN-20: สามารถกดปุ่ม Shift+Tab เพื่อย้อนกลับไปช่องกรอก username ได้', async ({ page, loginPage }) => {
+        test('TC-LOGIN-20: สามารถกดปุ่ม Shift+Tab เพื่อย้อนกลับไปช่องกรอก Username ได้', async ({ page, loginPage }) => {
             await loginPage.usernameInput.focus()
             await loginPage.pressTabOnUsername()
             await page.keyboard.press('Shift+Tab')
